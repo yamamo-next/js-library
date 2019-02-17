@@ -10,7 +10,8 @@ function isDate(strDate){
     }
 
     // 変換後の日付と一致するかを確認
-    const date = new Date(strDate);  
+    const date = new Date(strDate);
+    date.setTime(date.getTime() + 1000*60*60*9);    // JSTに変換
     if ((date.getFullYear() != strDate.split("/")[0])
      || (date.getMonth()    != strDate.split("/")[1] - 1)
      || (date.getDate()     != strDate.split("/")[2])){
@@ -55,9 +56,10 @@ function isDateNumeric(strDate){
 
     // 変換後の日付と一致するかを確認
     const date = new Date(strDate2);
-    if ((date.getFullYear() != strDate.split("/")[0])
-     || (date.getMonth()    != strDate.split("/")[1] - 1)
-     || (date.getDate()     != strDate.split("/")[2])) {
+    date.setTime(date.getTime() + 1000*60*60*9);    // JSTに変換
+    if ((date.getFullYear() != Number(strDate.slice(0,4)))
+     || (date.getMonth()    != Number(strDate.slice(4,6)) - 1)
+     || (date.getDate()     != Number(strDate.slice(6,8)))) {
         return false;
     }
 
